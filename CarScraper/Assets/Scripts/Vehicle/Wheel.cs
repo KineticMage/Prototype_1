@@ -8,6 +8,13 @@ namespace CarScraper.Vehicles
         public Transform wheelMesh;
         public bool wheelTurn;
 
+        private void Awake()
+        {
+            // Get components
+            wheelCollider = GetComponentInChildren<WheelCollider>();
+            wheelMesh = GetComponentInChildren<MeshFilter>().transform;
+        }
+
         void Update()
         {
             if (wheelTurn == true)

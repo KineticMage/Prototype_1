@@ -19,7 +19,11 @@ namespace TMPro
     /// Editable text input field.
     /// </summary>
     [AddComponentMenu("UI/TextMeshPro - Input Field", 11)]
+        #if UNITY_2023_2_OR_NEWER
+    [HelpURL("https://docs.unity3d.com/Packages/com.unity.ugui@2.0/manual/TextMeshPro/index.html")]
+    #else
     [HelpURL("https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.2")]
+    #endif
     public class TMP_InputField : Selectable,
         IUpdateSelectedHandler,
         IBeginDragHandler,
@@ -1552,8 +1556,8 @@ namespace TMPro
             if (m_HideMobileInput && m_SoftKeyboard != null && m_SoftKeyboard.canSetSelection &&
                 (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.tvOS))
             {
-                var selectionStart = Mathf.Min(caretSelectPositionInternal, caretPositionInternal);
-                var selectionLength = Mathf.Abs(caretSelectPositionInternal - caretPositionInternal);
+                var selectionStart = Mathf.Min(stringSelectPositionInternal, stringPositionInternal);
+                var selectionLength = Mathf.Abs(stringSelectPositionInternal - stringPositionInternal);
                 m_SoftKeyboard.selection = new RangeInt(selectionStart, selectionLength);
             }
         }
@@ -1824,8 +1828,8 @@ namespace TMPro
             else if (m_HideMobileInput && m_SoftKeyboard != null && m_SoftKeyboard.canSetSelection &&
                      Application.platform != RuntimePlatform.IPhonePlayer && Application.platform != RuntimePlatform.tvOS)
             {
-                var selectionStart = Mathf.Min(caretSelectPositionInternal, caretPositionInternal);
-                var selectionLength = Mathf.Abs(caretSelectPositionInternal - caretPositionInternal);
+                var selectionStart = Mathf.Min(stringSelectPositionInternal, stringPositionInternal);
+                var selectionLength = Mathf.Abs(stringSelectPositionInternal - stringPositionInternal);
                 m_SoftKeyboard.selection = new RangeInt(selectionStart, selectionLength);
             }
             else if (m_HideMobileInput && Application.platform == RuntimePlatform.Android ||
@@ -3307,6 +3311,9 @@ namespace TMPro
 
                 if (input == 0) return;
 
+                if (!char.IsHighSurrogate(input))
+                    m_CaretSelectPosition = m_CaretPosition += 1;
+
                 SendOnValueChanged();
                 UpdateLabel();
 
@@ -3340,7 +3347,7 @@ namespace TMPro
             // Can't go past the character limit
             if (characterLimit > 0 && text.Length >= characterLimit)
                 return;
-
+            
             m_Text = text.Insert(m_StringPosition, replaceString);
 
             if (!char.IsHighSurrogate(c))

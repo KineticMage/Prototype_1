@@ -1,18 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace CarScraper.Vehicles
 {
     public class CarControls : MonoBehaviour
     {
-
         public Rigidbody rigid;
         public WheelCollider wheel_L_F, wheel_L_B, wheel_R_F, wheel_R_B;
         public float drivespeed, steerspeed;
         float horizontalInput, verticalInput;
+
+        private void Awake()
+        {
+            // Get components
+            rigid = GetComponent<Rigidbody>();
+        }
 
         void Update()
         {

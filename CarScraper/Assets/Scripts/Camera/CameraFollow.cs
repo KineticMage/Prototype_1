@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CarScraper.Camera
 {
     public class CameraFollow : MonoBehaviour
     {
-
         public Transform carTransform;
         [Range(1, 10)]
         public float followSpeed = 2;
@@ -33,7 +30,6 @@ namespace CarScraper.Camera
             //Move to car
             Vector3 _targetPos = absoluteInitCameraPosition + carTransform.transform.position;
             transform.position = Vector3.Lerp(transform.position, _targetPos, followSpeed * Time.deltaTime);
-
         }
     }
 }

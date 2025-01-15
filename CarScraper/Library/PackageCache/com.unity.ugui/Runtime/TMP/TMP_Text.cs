@@ -449,6 +449,16 @@ namespace TMPro
 
 
         /// <summary>
+        /// The rotation for the environment map lighting.
+        /// </summary>
+        protected Vector3 m_currentEnvMapRotation;
+        /// <summary>
+        /// Determine if the environment map property is valid.
+        /// </summary>
+        protected bool m_hasEnvMapProperty;
+
+
+        /// <summary>
         /// The point size of the font.
         /// </summary>
         public float fontSize
@@ -4667,8 +4677,8 @@ namespace TMPro
 
                     if ((isWhiteSpace || charCode == 0x200B || charCode == 0x2D || charCode == 0xAD) && (!m_isNonBreakingSpace || ignoreNonBreakingSpace) && charCode != 0xA0 && charCode != 0x2007 && charCode != 0x2011 && charCode != 0x202F && charCode != 0x2060)
                     {
-                        // Ignore Hyphen (0x2D) when preceded by a whitespace
-                        if ((charCode == 0x2D && m_characterCount > 0 && char.IsWhiteSpace(m_textInfo.characterInfo[m_characterCount - 1].character)) == false)
+                        // Case 1391990 - Text after hyphen breaks when the hyphen is connected to the text
+                        if (!(charCode == 0x2D && m_characterCount > 0 && char.IsWhiteSpace(m_textInfo.characterInfo[m_characterCount - 1].character) && m_textInfo.characterInfo[m_characterCount - 1].lineNumber == m_lineNumber))
                         {
                             isFirstWordOfLine = false;
                             shouldSaveHardLineBreak = true;
@@ -4968,7 +4978,7 @@ namespace TMPro
 
             m_textInfo.lineInfo[m_lineNumber].characterCount = m_textInfo.lineInfo[m_lineNumber].lastCharacterIndex - m_textInfo.lineInfo[m_lineNumber].firstCharacterIndex + 1;
             m_textInfo.lineInfo[m_lineNumber].visibleCharacterCount = m_lineVisibleCharacterCount;
-            m_textInfo.lineInfo[m_lineNumber].visibleSpaceCount = m_lineVisibleSpaceCount;
+            m_textInfo.lineInfo[m_lineNumber].visibleSpaceCount = (m_textInfo.lineInfo[m_lineNumber].lastVisibleCharacterIndex + 1 - m_textInfo.lineInfo[m_lineNumber].firstCharacterIndex) - m_lineVisibleCharacterCount;
             m_textInfo.lineInfo[m_lineNumber].lineExtents.min = new Vector2(m_textInfo.characterInfo[m_firstVisibleCharacterOfLine].bottomLeft.x, lineDescender);
             m_textInfo.lineInfo[m_lineNumber].lineExtents.max = new Vector2(m_textInfo.characterInfo[m_lastVisibleCharacterOfLine].topRight.x, lineAscender);
             m_textInfo.lineInfo[m_lineNumber].length = m_textInfo.lineInfo[m_lineNumber].lineExtents.max.x;
@@ -5402,6 +5412,8 @@ namespace TMPro
                 c2 = m_tintSprite ? c2.Multiply(m_colorGradientPreset.topRight) : c2;
                 c3 = m_tintSprite ? c3.Multiply(m_colorGradientPreset.bottomRight) : c3;
             }
+
+            m_tintSprite = false;
 
             m_textInfo.characterInfo[m_characterCount].vertex_BL.color = c0;
             m_textInfo.characterInfo[m_characterCount].vertex_TL.color = c1;
