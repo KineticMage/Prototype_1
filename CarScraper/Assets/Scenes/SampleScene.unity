@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1890,8 +1891,8 @@ Transform:
   m_GameObject: {fileID: 204365141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.58, y: -0.03999999, z: -0.33169}
-  m_LocalScale: {x: 0.38313538, y: 0.38313538, z: 0.38313538}
+  m_LocalPosition: {x: -0.58, y: 0.041, z: -0.624}
+  m_LocalScale: {x: 0.5118305, y: 0.5118305, z: 0.5118305}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1332447557}
@@ -3925,7 +3926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 654898697}
   m_Layer: 0
-  m_Name: Back Left Wheel mesh
+  m_Name: Front Left Wheel mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4637,7 +4638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758749119}
   m_Layer: 0
-  m_Name: Front Left Wheel mesh
+  m_Name: Back Left Wheel mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4670,7 +4671,7 @@ GameObject:
   - component: {fileID: 772697949}
   - component: {fileID: 772697950}
   m_Layer: 0
-  m_Name: Front Left Wheel Col
+  m_Name: Back Left Wheel Col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4685,8 +4686,8 @@ Transform:
   m_GameObject: {fileID: 772697948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.58, y: -0.03999999, z: -0.33169}
-  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0.58, y: 0.065, z: -0.667}
+  m_LocalScale: {x: 0.5118305, y: 0.5118305, z: 0.5118305}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1332447557}
@@ -5164,8 +5165,8 @@ Transform:
   m_GameObject: {fileID: 784382862}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.58, y: -0.03999999, z: 0.34669}
-  m_LocalScale: {x: 0.38313538, y: 0.38313538, z: 0.38313538}
+  m_LocalPosition: {x: -0.58, y: 0.065, z: 0.667}
+  m_LocalScale: {x: 0.5118305, y: 0.5118305, z: 0.5118305}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1332447557}
@@ -6589,11 +6590,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 0}
-  wheel_L_F: {fileID: 772697950}
-  wheel_L_B: {fileID: 1865119351}
+  wheel_L_F: {fileID: 1865119351}
+  wheel_L_B: {fileID: 772697950}
   wheel_R_F: {fileID: 784382864}
   wheel_R_B: {fileID: 204365142}
-  drivespeed: 600
+  drivespeed: 1800
   steerspeed: 40
 --- !u!1 &967151690
 GameObject:
@@ -11385,7 +11386,7 @@ GameObject:
   - component: {fileID: 1865119350}
   - component: {fileID: 1865119351}
   m_Layer: 0
-  m_Name: Back Left Wheel Col
+  m_Name: Front Left Wheel Col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11400,8 +11401,8 @@ Transform:
   m_GameObject: {fileID: 1865119349}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.58, y: -0.03999999, z: 0.34669}
-  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0.58, y: 0.065, z: 0.645}
+  m_LocalScale: {x: 0.5118305, y: 0.5118305, z: 0.5118305}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1332447557}
