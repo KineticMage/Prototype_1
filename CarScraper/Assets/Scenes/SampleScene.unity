@@ -6429,6 +6429,7 @@ GameObject:
   - component: {fileID: 956754370}
   - component: {fileID: 956754369}
   - component: {fileID: 956754371}
+  - component: {fileID: 956754372}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -6497,8 +6498,23 @@ MonoBehaviour:
   wheel_L_B: {fileID: 204365142}
   wheel_R_F: {fileID: 1865119351}
   wheel_R_B: {fileID: 772697950}
-  drivespeed: 600
+  drivespeed: 1000
   steerspeed: 40
+--- !u!114 &956754372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956754368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc46337c87633504dabe3e7c098811bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tetherPoint: {x: 0, y: 2, z: 0}
+  carRB: {fileID: 956754369}
+  maxDistance: 10
 --- !u!1 &967151690
 GameObject:
   m_ObjectHideFlags: 0
