@@ -11,8 +11,8 @@ namespace CarScraper.Vehicles
         private void Awake()
         {
             // Get components
-            wheelCollider = GetComponentInChildren<WheelCollider>();
-            wheelMesh = GetComponentInChildren<MeshFilter>().transform;
+           //wheelCollider = GetComponentInChildren<WheelCollider>();
+           //wheelMesh = GetComponentInChildren<MeshFilter>().transform;
         }
 
         void Update()
