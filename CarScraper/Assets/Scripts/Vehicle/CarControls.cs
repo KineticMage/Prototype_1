@@ -30,6 +30,8 @@ namespace CarScraper.Vehicles
             wheel_R_B.motorTorque = motor;
             wheel_L_F.steerAngle = steerspeed * horizontalInput;
             wheel_L_B.steerAngle = steerspeed * horizontalInput;
+            wheel_R_F.steerAngle = steerspeed * horizontalInput;
+            wheel_L_F.steerAngle = steerspeed * horizontalInput;
         }
     }
 }
