@@ -13,6 +13,14 @@ namespace CarScraper.Vehicles
         [Header("InputMappings")]
         private Vector2 _moveDirection;
         [SerializeField] InputActionReference move;
+        [SerializeField] InputActionReference jumpInput;
+
+        [Header("Jumping")]
+        public float jumpForce;
+        public float FallMultiplier = 2.5f;
+        public float lowJumpMultiplier = 2f;
+        private bool isJumping = false;
+
         private void Awake()
         {
             // Get components
@@ -21,27 +29,50 @@ namespace CarScraper.Vehicles
 
         void Update()
         {
-            //horizontalInput = Input.GetAxis("Horizontal");
-            //verticalInput = Input.GetAxis("Vertical");
+            
+
+            if(rigid.linearVelocity.z<0 && isJumping)
+            {
+                rigid.linearVelocity += Vector3.up * Physics.gravity.y * (FallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (rigid.linearVelocity.z>0  &&  !jumpInput.action.IsPressed()&& isJumping)
+            {
+                rigid.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
             _moveDirection = move.action.ReadValue<Vector2>();
         }
 
         void FixedUpdate()
         {
-            //float motor = Input.GetAxis("Vertical") * drivespeed;
             float motor = _moveDirection.y * drivespeed;
             wheel_L_F.motorTorque = motor;
             wheel_L_B.motorTorque = motor;
             wheel_R_F.motorTorque = motor;
             wheel_R_B.motorTorque = motor;
-            //wheel_L_F.steerAngle = steerspeed * horizontalInput;
-            //wheel_L_B.steerAngle = steerspeed * horizontalInput;
-            //wheel_R_F.steerAngle = steerspeed * horizontalInput;
-            //wheel_L_F.steerAngle = steerspeed * horizontalInput;
+          
             wheel_L_F.steerAngle = steerspeed * _moveDirection.x;
             wheel_L_B.steerAngle = steerspeed * _moveDirection.x;
             wheel_R_F.steerAngle = steerspeed * _moveDirection.x;
             wheel_L_F.steerAngle = steerspeed * _moveDirection.x;
         }
+
+        public void Jump()
+        {
+            Debug.Log("jump!");
+            if (!isJumping)
+            {
+                rigid.linearVelocity += Vector3.up * jumpForce;
+                isJumping = true;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Ground")
+            {
+                isJumping = false;
+            }
+        }
+        
     }
 }
