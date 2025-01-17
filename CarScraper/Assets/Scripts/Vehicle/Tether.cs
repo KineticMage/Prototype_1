@@ -11,6 +11,8 @@ namespace CarScraper
         [SerializeField]
         private float maxDistance;
         private Vector3 dist;
+        [SerializeField]
+        private float torque;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -22,11 +24,11 @@ namespace CarScraper
         void Update()
         {
             dist = tetherPoint - carRB.transform.position;
-            if (dist.magnitude > maxDistance)
+            if (dist.magnitude >= maxDistance)
             {
                 carRB.transform.position = tetherPoint - dist.normalized * maxDistance;
                 carRB.AddForce(dist * 1000);
-                carRB.AddTorque(Vector3.up * 5);
+                carRB.AddTorque(Vector3.up * torque);
             }
         }
 

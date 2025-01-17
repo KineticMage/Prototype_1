@@ -6493,7 +6493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb7d80c9bd741742a7c1c3ac5ee2cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
+  rigid: {fileID: 956754369}
   wheel_L_F: {fileID: 784382864}
   wheel_L_B: {fileID: 204365142}
   wheel_R_F: {fileID: 1865119351}
@@ -6514,7 +6514,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetherPoint: {x: 0, y: 2, z: 0}
   carRB: {fileID: 956754369}
-  maxDistance: 10
+  maxDistance: 15
+  torque: 50
 --- !u!1 &967151690
 GameObject:
   m_ObjectHideFlags: 0
