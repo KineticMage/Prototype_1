@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace CarScraper.Vehicles
 {
@@ -7,8 +8,11 @@ namespace CarScraper.Vehicles
         public Rigidbody rigid;
         public WheelCollider wheel_L_F, wheel_L_B, wheel_R_F, wheel_R_B;
         public float drivespeed, steerspeed;
-        float horizontalInput, verticalInput;
+        //float horizontalInput, verticalInput;
 
+        [Header("InputMappings")]
+        private Vector2 _moveDirection;
+        [SerializeField] InputActionReference move;
         private void Awake()
         {
             // Get components
@@ -17,21 +21,27 @@ namespace CarScraper.Vehicles
 
         void Update()
         {
-            horizontalInput = Input.GetAxis("Horizontal");
-            verticalInput = Input.GetAxis("Vertical");
+            //horizontalInput = Input.GetAxis("Horizontal");
+            //verticalInput = Input.GetAxis("Vertical");
+            _moveDirection = move.action.ReadValue<Vector2>();
         }
 
         void FixedUpdate()
         {
-            float motor = Input.GetAxis("Vertical") * drivespeed;
+            //float motor = Input.GetAxis("Vertical") * drivespeed;
+            float motor = _moveDirection.y * drivespeed;
             wheel_L_F.motorTorque = motor;
             wheel_L_B.motorTorque = motor;
             wheel_R_F.motorTorque = motor;
             wheel_R_B.motorTorque = motor;
-            wheel_L_F.steerAngle = steerspeed * horizontalInput;
-            wheel_L_B.steerAngle = steerspeed * horizontalInput;
-            wheel_R_F.steerAngle = steerspeed * horizontalInput;
-            wheel_L_F.steerAngle = steerspeed * horizontalInput;
+            //wheel_L_F.steerAngle = steerspeed * horizontalInput;
+            //wheel_L_B.steerAngle = steerspeed * horizontalInput;
+            //wheel_R_F.steerAngle = steerspeed * horizontalInput;
+            //wheel_L_F.steerAngle = steerspeed * horizontalInput;
+            wheel_L_F.steerAngle = steerspeed * _moveDirection.x;
+            wheel_L_B.steerAngle = steerspeed * _moveDirection.x;
+            wheel_R_F.steerAngle = steerspeed * _moveDirection.x;
+            wheel_L_F.steerAngle = steerspeed * _moveDirection.x;
         }
     }
 }
