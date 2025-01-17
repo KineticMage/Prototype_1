@@ -21,23 +21,16 @@ namespace CarScraper.Vehicles
 
         void Update()
         {
-            //horizontalInput = Input.GetAxis("Horizontal");
-            //verticalInput = Input.GetAxis("Vertical");
             _moveDirection = move.action.ReadValue<Vector2>();
         }
 
         void FixedUpdate()
         {
-            //float motor = Input.GetAxis("Vertical") * drivespeed;
             float motor = _moveDirection.y * drivespeed;
             wheel_L_F.motorTorque = motor;
             wheel_L_B.motorTorque = motor;
             wheel_R_F.motorTorque = motor;
             wheel_R_B.motorTorque = motor;
-            //wheel_L_F.steerAngle = steerspeed * horizontalInput;
-            //wheel_L_B.steerAngle = steerspeed * horizontalInput;
-            //wheel_R_F.steerAngle = steerspeed * horizontalInput;
-            //wheel_L_F.steerAngle = steerspeed * horizontalInput;
             wheel_L_F.steerAngle = steerspeed * _moveDirection.x;
             wheel_L_B.steerAngle = steerspeed * _moveDirection.x;
             wheel_R_F.steerAngle = steerspeed * _moveDirection.x;
