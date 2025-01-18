@@ -15,18 +15,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AttachTether",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "488cd2ac-0d11-425d-b234-17cf4f403cc9",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DetachTether",
-                    "type": "Button",
-                    "id": "b3b1f9ac-82a8-41d2-9b81-246958f085a4",
+                    "id": "6d71df32-80fd-4e8f-afe5-5b592260c64a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -201,23 +192,23 @@
                 },
                 {
                     "name": "",
-                    "id": "9c1b6cc9-4b9d-4b56-aa36-f3878915b1ad",
-                    "path": "<Mouse>/leftButton",
+                    "id": "24dd1a37-8443-4721-97b9-a25f0244d588",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AttachTether",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "1207212d-73b8-4c37-a5e4-00be029fc127",
-                    "path": "<Mouse>/rightButton",
+                    "id": "724640dc-e8ac-4158-9657-4335489a504c",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DetachTether",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
