@@ -16,8 +16,9 @@ namespace CarScraper
         private float torque;
         [SerializeField]
         private InputActionReference leftClick;
+        [SerializeField]
+        private InputActionReference rightClick;
         private bool isTethered;
-        private bool drawMouseHit;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -37,6 +38,9 @@ namespace CarScraper
                     carRB.AddForce(dist * 1000);
                     carRB.AddTorque(Vector3.up * torque);
                 }
+
+                if (rightClick.action.ReadValue<float>() == 1)
+                    isTethered = false;
             }
             else
             {
@@ -46,7 +50,6 @@ namespace CarScraper
                     // Get the mouse's position
                     UnityEngine.Camera mainCam = UnityEngine.Camera.main;
                     Vector3 mousePos = Mouse.current.position.ReadValue();
-                    drawMouseHit = true;
 
                     // Do a raycast, and if it hits a tetherable object, attach to it
                     LayerMask layerMask = LayerMask.GetMask("TetherObject");

@@ -6739,6 +6739,7 @@ MonoBehaviour:
   maxDistance: 10
   torque: 50
   leftClick: {fileID: -3969527635603149285, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
+  rightClick: {fileID: -4260307900195502727, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
 --- !u!1 &967151690
 GameObject:
   m_ObjectHideFlags: 0
