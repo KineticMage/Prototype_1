@@ -6800,6 +6800,10 @@ MonoBehaviour:
   drivespeed: 1000
   steerspeed: 40
   move: {fileID: 665174823816205576, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
+  jumpInput: {fileID: 7671029807826948509, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
+  jumpForce: 0
+  FallMultiplier: 2.5
+  lowJumpMultiplier: 2
 --- !u!114 &956754372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6846,8 +6850,8 @@ MonoBehaviour:
   carRB: {fileID: 956754369}
   maxDistance: 10
   torque: 50
-  leftClick: {fileID: -3969527635603149285, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
-  rightClick: {fileID: -4260307900195502727, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
+  leftClick: {fileID: 2927861327515408729, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
+  rightClick: {fileID: -7776591262001909555, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   tetherCube: {fileID: 41862675}
 --- !u!1 &967151690
 GameObject:
