@@ -19,6 +19,8 @@ namespace CarScraper
         [SerializeField]
         private InputActionReference rightClick;
         private bool isTethered;
+        [SerializeField]
+        private GameObject tetherCube;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -38,9 +40,15 @@ namespace CarScraper
                     carRB.AddForce(dist * 1000);
                     carRB.AddTorque(Vector3.up * torque);
                 }
+                tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
+                tetherCube.transform.localPosition = tetherPoint - dist / 2;
+                tetherCube.transform.rotation = Quaternion.LookRotation(dist);
 
                 if (rightClick.action.ReadValue<float>() == 1)
+                {
                     isTethered = false;
+                    tetherCube.SetActive(false);
+                }
             }
             else
             {
@@ -57,6 +65,7 @@ namespace CarScraper
                     if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
                     {
                         isTethered = true;
+                        tetherCube.SetActive(true);
                         tetherPoint = hit.transform.position;
                     }
                 }
@@ -65,8 +74,8 @@ namespace CarScraper
 
         private void OnDrawGizmos()
         {
-            if (isTethered)
-                Gizmos.DrawRay(tetherPoint, -dist);
+            //if (isTethered)
+            //    Gizmos.DrawRay(tetherPoint, -dist);
         }
     }
 }
