@@ -67,6 +67,9 @@ namespace CarScraper
                         isTethered = true;
                         tetherCube.SetActive(true);
                         tetherPoint = hit.transform.position;
+                        tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
+                        tetherCube.transform.localPosition = tetherPoint - dist / 2;
+                        tetherCube.transform.rotation = Quaternion.LookRotation(dist);
                     }
                 }
             }
