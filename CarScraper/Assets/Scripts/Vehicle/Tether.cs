@@ -43,21 +43,18 @@ namespace CarScraper
                 // Check for TetherableObjects when left click is pressed
                 if (leftClick.action.ReadValue<float>() == 1)
                 {
-                    // Get the mouse's world position
+                    // Get the mouse's position
                     UnityEngine.Camera mainCam = UnityEngine.Camera.main;
                     Vector3 mousePos = Mouse.current.position.ReadValue();
-                    mousePos.z = mainCam.transform.position.y;
-                    Vector3 screenToWorld = mainCam.ScreenToWorldPoint(mousePos);
-                    Debug.Log(screenToWorld);
                     drawMouseHit = true;
 
                     // Do a raycast, and if it hits a tetherable object, attach to it
                     LayerMask layerMask = LayerMask.GetMask("TetherObject");
-                    if (Physics.SphereCast(screenToWorld, 1, Vector3.up, out RaycastHit hit, Mathf.Infinity, layerMask))
+                    Ray ray = mainCam.ScreenPointToRay(mousePos);
+                    if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
                     {
                         isTethered = true;
                         tetherPoint = hit.transform.position;
-                        Debug.Log("hruhrugh");
                     }
                 }
             }
@@ -67,16 +64,6 @@ namespace CarScraper
         {
             if (isTethered)
                 Gizmos.DrawRay(tetherPoint, -dist);
-            if (drawMouseHit)
-            {
-                // Get the mouse's world position
-                UnityEngine.Camera mainCam = UnityEngine.Camera.main;
-                Vector3 mousePos = Mouse.current.position.ReadValue();
-                mousePos.z = mainCam.transform.position.y;
-                Vector3 screenToWorld = UnityEngine.Camera.main.ScreenToWorldPoint(mousePos);
-                Gizmos.DrawSphere(screenToWorld, 1);
-                drawMouseHit = false;
-            }
         }
     }
 }
