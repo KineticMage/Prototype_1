@@ -17,7 +17,7 @@ MonoBehaviour:
     x: 0
     y: 42.666668
     width: 2560
-    height: 1357.3334
+    height: 1349.3334
   m_ShowMode: 4
   m_Title: Game
   m_RootView: {fileID: 2}
@@ -45,7 +45,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 2560
-    height: 1357.3334
+    height: 1349.3334
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 1337.3334
+    y: 1329.3334
     width: 2560
     height: 20
   m_MinSize: {x: 0, y: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
     x: 0
     y: 36
     width: 2560
-    height: 1301.3334
+    height: 1293.3334
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
@@ -140,12 +140,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     width: 1935.3334
 =======
     width: 1934.6666
 >>>>>>> Stashed changes
     height: 1301.3334
+=======
+    width: 1934.6666
+    height: 1293.3334
+>>>>>>> project-recreation
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
@@ -170,12 +175,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     width: 1935.3334
 =======
     width: 1934.6666
 >>>>>>> Stashed changes
     height: 851.3333
+=======
+    width: 1934.6666
+    height: 846.6667
+>>>>>>> project-recreation
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
@@ -198,12 +208,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     width: 592.6667
 =======
     width: 592
 >>>>>>> Stashed changes
     height: 851.3333
+=======
+    width: 592
+    height: 846.6667
+>>>>>>> project-recreation
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 13}
@@ -226,14 +241,19 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 592.6667
+    x: 592
     y: 0
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     width: 1342.6667
 =======
     width: 1342.6666
 >>>>>>> Stashed changes
     height: 851.3333
+=======
+    width: 1342.6666
+    height: 846.6667
+>>>>>>> project-recreation
   m_MinSize: {x: 102, y: 126}
   m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 16}
@@ -259,6 +279,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 851.3333
 <<<<<<< Updated upstream
     width: 1935.3334
@@ -266,6 +287,11 @@ MonoBehaviour:
     width: 1934.6666
 >>>>>>> Stashed changes
     height: 450.00006
+=======
+    y: 846.6667
+    width: 1934.6666
+    height: 446.6667
+>>>>>>> project-recreation
   m_MinSize: {x: 101, y: 126}
   m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 12}
@@ -289,14 +315,19 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1935.3334
+    x: 1934.6666
     y: 0
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     width: 624.6666
 =======
     width: 625.3334
 >>>>>>> Stashed changes
     height: 1301.3334
+=======
+    width: 625.3334
+    height: 1293.3334
+>>>>>>> project-recreation
   m_MinSize: {x: 276, y: 76}
   m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 18}
@@ -326,6 +357,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 875.3333
 <<<<<<< Updated upstream
     width: 1934.3334
@@ -333,6 +365,11 @@ MonoBehaviour:
     width: 1933.6666
 >>>>>>> Stashed changes
     height: 424.00006
+=======
+    y: 870.6667
+    width: 1933.6666
+    height: 420.6667
+>>>>>>> project-recreation
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -367,12 +404,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 24
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     width: 591.6667
 =======
     width: 591
 >>>>>>> Stashed changes
     height: 825.3333
+=======
+    width: 591
+    height: 820.6667
+>>>>>>> project-recreation
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1049,6 +1091,7 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     m_Target: {x: 0.00025182962, y: 0.29148895, z: -0.0007226467}
     speed: 2
@@ -1058,6 +1101,11 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 2.0065932, y: 0.029056871, z: 2.739245}
 >>>>>>> Stashed changes
+=======
+    m_Target: {x: 2.0065932, y: 0.029056871, z: 2.739245}
+    speed: 2
+    m_Value: {x: 2.5544677, y: -0.5269809, z: -2.5385334}
+>>>>>>> project-recreation
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1103,13 +1151,18 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     m_Target: {x: -0.13187376, y: 0.13516125, z: -0.018147033, w: -0.981859}
+=======
+    m_Target: {x: -0.13853534, y: 0.021090953, z: -0.0029481573, w: -0.9901541}
+>>>>>>> project-recreation
     speed: 2
-    m_Value: {x: -0.13187376, y: 0.13516125, z: -0.018147033, w: -0.981859}
+    m_Value: {x: -0.32440257, y: -0.26622102, z: 0.095658645, w: -0.9026505}
   m_Size:
-    m_Target: 1.3446606
+    m_Target: 3.6416643
     speed: 2
+<<<<<<< HEAD
     m_Value: 1.3446606
 =======
     m_Target: {x: -0.119070314, y: -0.34870076, z: 0.04466493, w: -0.92862344}
@@ -1120,6 +1173,9 @@ MonoBehaviour:
     speed: 2
     m_Value: 3.6416643
 >>>>>>> Stashed changes
+=======
+    m_Value: 7.1310935
+>>>>>>> project-recreation
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1243,14 +1299,19 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 593.6667
+    x: 593
     y: 24
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     width: 1340.6667
 =======
     width: 1340.6666
 >>>>>>> Stashed changes
     height: 825.3333
+=======
+    width: 1340.6666
+    height: 820.6667
+>>>>>>> project-recreation
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1304,6 +1365,7 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       width: 753
       height: 446.5
@@ -1315,6 +1377,12 @@ MonoBehaviour:
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 670.3333, y: 399.83334}
 >>>>>>> Stashed changes
+=======
+      width: 1005
+      height: 569
+    m_Scale: {x: 0.78515625, y: 0.78515625}
+    m_Translation: {x: 502.5, y: 284.5}
+>>>>>>> project-recreation
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -1323,10 +1391,11 @@ MonoBehaviour:
       serializedVersion: 2
 <<<<<<< Updated upstream
       x: -640
-      y: -379.49533
+      y: -362.34827
       width: 1280
-      height: 758.99066
+      height: 724.69653
     m_MinimalGUI: 1
+<<<<<<< HEAD
   m_defaultScale: 0.5882813
   m_LastWindowPixelSize: {x: 753, y: 467.5}
 =======
@@ -1338,6 +1407,10 @@ MonoBehaviour:
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1340.6666, y: 820.6667}
 >>>>>>> Stashed changes
+=======
+  m_defaultScale: 0.78515625
+  m_LastWindowPixelSize: {x: 1005, y: 590}
+>>>>>>> project-recreation
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 00000000000000000000
@@ -1410,11 +1483,15 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: beaa0000
     m_LastClickedID: 43710
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     m_ExpandedIDs: 
 =======
     m_ExpandedIDs: 0000000072a90000
 >>>>>>> Stashed changes
+=======
+    m_ExpandedIDs: 00000000e6a40000e8a40000eaa40000
+>>>>>>> project-recreation
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1443,11 +1520,15 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     m_ExpandedIDs: 
 =======
     m_ExpandedIDs: 0000000072a90000
 >>>>>>> Stashed changes
+=======
+    m_ExpandedIDs: 00000000e6a40000e8a40000eaa40000
+>>>>>>> project-recreation
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1526,14 +1607,19 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1936.3334
+    x: 1935.6666
     y: 24
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     width: 623.6666
 =======
     width: 624.3334
 >>>>>>> Stashed changes
     height: 1275.3334
+=======
+    width: 624.3334
+    height: 1267.3334
+>>>>>>> project-recreation
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0

@@ -21,6 +21,8 @@ namespace CarScraper.Vehicles
         public float lowJumpMultiplier = 2f;
         private bool isJumping = false;
 
+        public Rigidbody RB => rigid;
+
         private void Awake()
         {
             // Get components
