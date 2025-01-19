@@ -22,24 +22,24 @@ namespace CarScraper
         [SerializeField]
         private GameObject tetherCube;
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             isTethered = false;
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (isTethered)
             {
                 dist = tetherPoint - carRB.transform.position;
+
                 if (dist.magnitude >= maxDistance)
                 {
                     carRB.transform.position = tetherPoint - dist.normalized * maxDistance;
                     carRB.AddForce(dist * 1000);
                     carRB.AddTorque(Vector3.up * torque);
                 }
+
                 tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
                 tetherCube.transform.localPosition = tetherPoint - dist / 2;
                 tetherCube.transform.rotation = Quaternion.LookRotation(dist);
@@ -52,24 +52,28 @@ namespace CarScraper
             }
             else
             {
-                // Check for TetherableObjects when left click is pressed
                 if (leftClick.action.ReadValue<float>() == 1)
                 {
-                    // Get the mouse's position
-                    UnityEngine.Camera mainCam = UnityEngine.Camera.main;
-                    Vector3 mousePos = Mouse.current.position.ReadValue();
-
-                    // Do a raycast, and if it hits a tetherable object, attach to it
+                    UnityEngine.Camera mainCam = UnityEngine.Camera.main; Vector3 mousePos = Mouse.current.position.ReadValue();
                     LayerMask layerMask = LayerMask.GetMask("TetherObject");
                     Ray ray = mainCam.ScreenPointToRay(mousePos);
+
                     if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
                     {
-                        isTethered = true;
-                        tetherCube.SetActive(true);
-                        tetherPoint = hit.transform.position;
-                        tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
-                        tetherCube.transform.localPosition = tetherPoint - dist / 2;
-                        tetherCube.transform.rotation = Quaternion.LookRotation(dist);
+                        float distanceToHit = Vector3.Distance(hit.point, carRB.transform.position);
+
+                        // Ensure the hit point is within the max tethering range
+                        if (distanceToHit <= maxDistance)
+                        {
+                            isTethered = true;
+                            tetherPoint = hit.point;
+                            tetherCube.SetActive(true);
+
+                            dist = tetherPoint - carRB.transform.position; // Update dist before using it
+                            tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
+                            tetherCube.transform.localPosition = tetherPoint - dist / 2;
+                            tetherCube.transform.rotation = Quaternion.LookRotation(dist);
+                        }
                     }
                 }
             }
@@ -77,8 +81,12 @@ namespace CarScraper
 
         private void OnDrawGizmos()
         {
-            //if (isTethered)
-            //    Gizmos.DrawRay(tetherPoint, -dist);
+            if (isTethered)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(tetherPoint, 0.2f);
+                Gizmos.DrawLine(carRB.transform.position, tetherPoint);
+            }
         }
     }
 }
