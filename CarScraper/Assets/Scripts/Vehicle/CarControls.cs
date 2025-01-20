@@ -8,7 +8,6 @@ namespace CarScraper.Vehicles
         public Rigidbody rigid;
         public WheelCollider wheel_L_F, wheel_L_B, wheel_R_F, wheel_R_B;
         public float drivespeed, steerspeed;
-        //float horizontalInput, verticalInput;
 
         [Header("InputMappings")]
         private Vector2 _moveDirection;
@@ -25,19 +24,20 @@ namespace CarScraper.Vehicles
 
         private void Awake()
         {
-            // Get components
+            // Get Rigidbody component
             rigid = GetComponent<Rigidbody>();
+
+            // **Option 1: Lower the Center of Mass**
+            rigid.centerOfMass = new Vector3(0, -0.5f, 0); // Adjust Y value as needed
         }
 
         void Update()
         {
-            
-
-            if(rigid.linearVelocity.z<0 && isJumping)
+            if (rigid.linearVelocity.z < 0 && isJumping)
             {
                 rigid.linearVelocity += Vector3.up * Physics.gravity.y * (FallMultiplier - 1) * Time.deltaTime;
             }
-            else if (rigid.linearVelocity.z>0  &&  !jumpInput.action.IsPressed()&& isJumping)
+            else if (rigid.linearVelocity.z > 0 && !jumpInput.action.IsPressed() && isJumping)
             {
                 rigid.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
             }
@@ -51,11 +51,15 @@ namespace CarScraper.Vehicles
             wheel_L_B.motorTorque = motor;
             wheel_R_F.motorTorque = motor;
             wheel_R_B.motorTorque = motor;
-          
+
             wheel_L_F.steerAngle = steerspeed * _moveDirection.x;
             wheel_L_B.steerAngle = steerspeed * _moveDirection.x;
             wheel_R_F.steerAngle = steerspeed * _moveDirection.x;
             wheel_L_F.steerAngle = steerspeed * _moveDirection.x;
+
+            // **Option 2: Apply Anti-Roll Bars**
+            ApplyAntiRollBar(wheel_L_F, wheel_R_F);
+            ApplyAntiRollBar(wheel_L_B, wheel_R_B);
         }
 
         public void Jump()
@@ -75,6 +79,18 @@ namespace CarScraper.Vehicles
                 isJumping = false;
             }
         }
-        
+
+        // **Option 2: Anti-Roll Bar Implementation**
+        void ApplyAntiRollBar(WheelCollider leftWheel, WheelCollider rightWheel)
+        {
+            WheelHit hit;
+            float leftTravel = leftWheel.GetGroundHit(out hit) ? 1 - (hit.point.y - leftWheel.transform.position.y) / leftWheel.suspensionDistance : 1;
+            float rightTravel = rightWheel.GetGroundHit(out hit) ? 1 - (hit.point.y - rightWheel.transform.position.y) / rightWheel.suspensionDistance : 1;
+
+            float antiRollForce = (leftTravel - rightTravel) * 5000f; // Adjust force
+
+            if (leftWheel.isGrounded) rigid.AddForceAtPosition(leftWheel.transform.up * -antiRollForce, leftWheel.transform.position);
+            if (rightWheel.isGrounded) rigid.AddForceAtPosition(rightWheel.transform.up * antiRollForce, rightWheel.transform.position);
+        }
     }
 }
