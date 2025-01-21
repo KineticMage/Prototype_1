@@ -57,7 +57,7 @@
                 {
                     "name": "up",
                     "id": "14f69a6b-d489-47c7-a574-394ff65e2054",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
@@ -68,7 +68,7 @@
                 {
                     "name": "down",
                     "id": "910a47f7-eb72-4cb8-bfd7-61500ac6d660",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",

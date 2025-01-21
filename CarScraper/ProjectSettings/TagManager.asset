@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Drone
+  - FrontWheels
+  - BackWheels
   layers:
   - Default
   - TransparentFX
