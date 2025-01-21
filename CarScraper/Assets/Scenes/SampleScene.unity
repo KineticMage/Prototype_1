@@ -7032,6 +7032,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923803400}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &941322954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 941322955}
+  m_Layer: 0
+  m_Name: FrontWheels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &941322955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941322954}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1332447557}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952192541
 GameObject:
   m_ObjectHideFlags: 0
@@ -7175,7 +7206,7 @@ Transform:
   m_GameObject: {fileID: 956754368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99993557, z: -0, w: 0.011355664}
-  m_LocalPosition: {x: 10.14, y: 0.315, z: 2.59}
+  m_LocalPosition: {x: 10.4, y: 0.315, z: -10.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7207,7 +7238,6 @@ MonoBehaviour:
   jumpForce: 0
   FallMultiplier: 2.5
   lowJumpMultiplier: 2
-  boostMultiplier: 2
 --- !u!114 &956754372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9370,6 +9400,7 @@ Transform:
   - {fileID: 49834562}
   - {fileID: 654898697}
   - {fileID: 833025807}
+  - {fileID: 941322955}
   m_Father: {fileID: 956754370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1332447558
@@ -9391,8 +9422,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.73806, y: 0.47730756, z: 1.6499248}
-  m_Center: {x: 0.046075605, y: -0.26134738, z: 0.042786125}
+  m_Size: {x: 1.5266215, y: 0.47730756, z: 0.6787494}
+  m_Center: {x: 0.016678168, y: -0.26134738, z: -0.4011176}
 --- !u!1 &1372974655
 GameObject:
   m_ObjectHideFlags: 0
@@ -10867,7 +10898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8533022186914448572, guid: 5c417f6bcfd16924990077d2119f53f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.9
+      value: -7.07
       objectReference: {fileID: 0}
     - target: {fileID: 8533022186914448572, guid: 5c417f6bcfd16924990077d2119f53f4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10906,8 +10937,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 956754371}
     - target: {fileID: 9220232523696358520, guid: 5c417f6bcfd16924990077d2119f53f4, type: 3}
+      propertyPath: boostDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220232523696358520, guid: 5c417f6bcfd16924990077d2119f53f4, type: 3}
       propertyPath: boostMultiplier
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220232523696358520, guid: 5c417f6bcfd16924990077d2119f53f4, type: 3}
+      propertyPath: dampingDuration
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
