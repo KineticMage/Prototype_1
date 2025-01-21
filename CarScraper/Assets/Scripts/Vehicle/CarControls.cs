@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 namespace CarScraper.Vehicles
 {
@@ -20,6 +21,12 @@ namespace CarScraper.Vehicles
         public float FallMultiplier = 2.5f;
         public float lowJumpMultiplier = 2f;
         private bool isJumping = false;
+
+        [Header("Speed Boost")]
+        //float motor; // Base motor torque 
+        public float boostMultiplier = 2f; // How much to multiply torque during boost
+        private float currentMotorTorque;
+        private bool isBoosting = false;
 
         public Rigidbody RB => rigid;
 
@@ -75,6 +82,36 @@ namespace CarScraper.Vehicles
                 isJumping = false;
             }
         }
-        
+
+
+        public void ApplySpeedBoost(float boostMultiplier, float boostDuration)
+        {
+            if (!isBoosting)
+            {
+                StartCoroutine(SpeedBoostRoutine(boostMultiplier, boostDuration));
+            }
+        }
+
+        private IEnumerator SpeedBoostRoutine(float boostMultiplier, float duration)
+        {
+            isBoosting = true;
+
+            // Temporarily increase motor torque
+            wheel_L_F.motorTorque = drivespeed * boostMultiplier;
+            wheel_L_B.motorTorque = drivespeed * boostMultiplier;
+            wheel_R_F.motorTorque = drivespeed * boostMultiplier;
+            wheel_R_B.motorTorque = drivespeed * boostMultiplier;
+            Debug.Log($"Speed boosted to: {wheel_R_F.motorTorque}");
+
+            yield return new WaitForSeconds(duration);
+
+            // Revert motor torque to normal
+            wheel_L_F.motorTorque = wheel_L_F.motorTorque;
+            wheel_L_B.motorTorque = wheel_L_B.motorTorque;
+            wheel_R_F.motorTorque = wheel_R_F.motorTorque;
+            wheel_R_B.motorTorque = wheel_R_B.motorTorque;
+            Debug.Log("Speed boost ended.");
+            isBoosting = false;
+        }
     }
 }
