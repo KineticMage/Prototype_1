@@ -6,7 +6,7 @@ namespace CarScraper
     {
         public bool isVisible = false;
 
-        public void ShowSettings(GameObject settingsMenuUI)
+        public void EnableSettings(GameObject settingsMenuUI)
         {
             Debug.Log("Settings Enabled");
             Time.timeScale = 0f;

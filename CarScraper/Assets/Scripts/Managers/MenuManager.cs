@@ -34,7 +34,7 @@ namespace CarScraper
         public void SettingsLogic(InputAction.CallbackContext ctx)
         {
             if (settingsMenu.isVisible) settingsMenu.DisableSettings(settingsMenuUI);
-            else settingsMenu.ShowSettings(settingsMenuUI);
+            else settingsMenu.EnableSettings(settingsMenuUI);
         }
     }
 }

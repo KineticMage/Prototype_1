@@ -24,9 +24,9 @@ namespace CarScraper
             isPaused = false;
         }
 
-        public void RestartLevel()
+        public void GoMainMenu()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 }
