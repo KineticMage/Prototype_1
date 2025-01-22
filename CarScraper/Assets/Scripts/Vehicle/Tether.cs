@@ -66,6 +66,7 @@ namespace CarScraper
                     {
                         if (go == highlightedTetherObj)
                             highlightedTetherObj = null;
+                        go.GetComponent<MeshRenderer>().material.color = Color.white;
                         tetherObjsInRange.RemoveAt(i);
                         i--;
                     }
@@ -81,6 +82,7 @@ namespace CarScraper
                     if (!tetherObjsInRange.Contains(go))
                     {
                         tetherObjsInRange.Add(go);
+                        go.GetComponent<MeshRenderer>().material.color = Color.yellow;
                     }
                 }
 
@@ -100,7 +102,7 @@ namespace CarScraper
 
                     if (highlightedTetherObj != null)
                     {
-                        // Set material here
+                        highlightedTetherObj.GetComponent<MeshRenderer>().material.color = Color.green;
                     }
                 }
 
