@@ -20,6 +20,8 @@ namespace CarScraper
         private InputActionReference leftClick;
         [SerializeField]
         private InputActionReference rightClick;
+        [SerializeField]
+        private InputActionReference scroll;
         private bool isTethered;
         [SerializeField]
         private GameObject tetherCube;
@@ -57,6 +59,7 @@ namespace CarScraper
             }
             else
             {
+                Debug.Log(scroll.action.ReadValue<Vector2>());
                 // Remove hits that are too far away from the list
                 for (int i = 0; i < tetherObjsInRange.Count; i++)
                 {

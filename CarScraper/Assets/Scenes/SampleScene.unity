@@ -7255,11 +7255,8 @@ MonoBehaviour:
   torque: 50
   leftClick: {fileID: 2927861327515408729, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   rightClick: {fileID: -7776591262001909555, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
+  scroll: {fileID: -1937982655695695389, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   tetherCube: {fileID: 41862675}
-  tetherObjectMats:
-  - {fileID: 2100000, guid: e985d5442a8757848b3cfbda59e34f6b, type: 2}
-  - {fileID: 2100000, guid: 6634bf890e337d7438fdad33afeb9432, type: 2}
-  - {fileID: 2100000, guid: 0cecab5021342684fb2dac3ba586323b, type: 2}
 --- !u!1 &967151690
 GameObject:
   m_ObjectHideFlags: 0
