@@ -1,5 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 namespace CarScraper
 {
@@ -21,11 +23,13 @@ namespace CarScraper
         private bool isTethered;
         [SerializeField]
         private GameObject tetherCube;
-        private GameObject[] tetherObjsInRange;
+        private List<GameObject> tetherObjsInRange;
+        private GameObject highlightedTetherObj;
 
         void Start()
         {
             isTethered = false;
+            tetherObjsInRange = new List<GameObject>();
         }
 
         void Update()
@@ -53,29 +57,63 @@ namespace CarScraper
             }
             else
             {
-                if (leftClick.action.ReadValue<float>() == 1)
+                // Remove hits that are too far away from the list
+                for (int i = 0; i < tetherObjsInRange.Count; i++)
                 {
-                    UnityEngine.Camera mainCam = UnityEngine.Camera.main; Vector3 mousePos = Mouse.current.position.ReadValue();
-                    LayerMask layerMask = LayerMask.GetMask("TetherObject");
-                    Ray ray = mainCam.ScreenPointToRay(mousePos);
-
-                    if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+                    GameObject go = tetherObjsInRange[i];
+                    float currentDist = (go.transform.position - carRB.transform.position).magnitude;
+                    if (currentDist > maxDistance)
                     {
-                        float distanceToHit = Vector3.Distance(hit.point, carRB.transform.position);
+                        if (go == highlightedTetherObj)
+                            highlightedTetherObj = null;
+                        tetherObjsInRange.RemoveAt(i);
+                        i--;
+                    }
+                }
 
-                        // Ensure the hit point is within the max tethering range
-                        if (distanceToHit <= maxDistance)
+                // Add new hits to the list
+                LayerMask layerMask = LayerMask.GetMask("TetherObject");
+                RaycastHit[] hits = Physics.SphereCastAll(carRB.transform.position, maxDistance, Vector3.up,
+                    maxDistance, layerMask);
+                foreach (RaycastHit hit in hits)
+                {
+                    GameObject go = hit.collider.gameObject;
+                    if (!tetherObjsInRange.Contains(go))
+                    {
+                        tetherObjsInRange.Add(go);
+                    }
+                }
+
+                // If there is no closest hit, highlight the closest hit
+                if (highlightedTetherObj == null)
+                {
+                    float minDistance = maxDistance;
+                    foreach (GameObject go in tetherObjsInRange)
+                    {
+                        float currentDist = (go.transform.position - carRB.transform.position).magnitude;
+                        if (currentDist < minDistance)
                         {
-                            isTethered = true;
-                            tetherPoint = hit.point;
-                            tetherCube.SetActive(true);
-
-                            dist = tetherPoint - carRB.transform.position; // Update dist before using it
-                            tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
-                            tetherCube.transform.localPosition = tetherPoint - dist / 2;
-                            tetherCube.transform.rotation = Quaternion.LookRotation(dist);
+                            minDistance = currentDist;
+                            highlightedTetherObj = go;
                         }
                     }
+
+                    if (highlightedTetherObj != null)
+                    {
+                        // Set material here
+                    }
+                }
+
+                if (leftClick.action.ReadValue<float>() == 1 && highlightedTetherObj != null)
+                {
+                    isTethered = true;
+                    tetherPoint = highlightedTetherObj.transform.position;
+                    tetherCube.SetActive(true);
+
+                    dist = tetherPoint - carRB.transform.position; // Update dist before using it
+                    tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
+                    tetherCube.transform.localPosition = tetherPoint - dist / 2;
+                    tetherCube.transform.rotation = Quaternion.LookRotation(dist);
                 }
             }
         }
