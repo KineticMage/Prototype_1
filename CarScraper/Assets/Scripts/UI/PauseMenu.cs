@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace CarScraper
 {
@@ -21,6 +22,11 @@ namespace CarScraper
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
             isPaused = false;
+        }
+
+        public void GoMainMenu()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 }
