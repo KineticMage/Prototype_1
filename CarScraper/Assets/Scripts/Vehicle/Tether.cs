@@ -21,6 +21,7 @@ namespace CarScraper
         private bool isTethered;
         [SerializeField]
         private GameObject tetherCube;
+        private GameObject[] tetherObjsInRange;
 
         void Start()
         {
@@ -44,7 +45,7 @@ namespace CarScraper
                 tetherCube.transform.localPosition = tetherPoint - dist / 2;
                 tetherCube.transform.rotation = Quaternion.LookRotation(dist);
 
-                if (rightClick.action.ReadValue<float>() == 1)
+                if (leftClick.action.ReadValue<float>() == 0)
                 {
                     isTethered = false;
                     tetherCube.SetActive(false);
