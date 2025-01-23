@@ -9,19 +9,37 @@ namespace CarScraper.Actors
         [SerializeField] private float speed;
         [SerializeField] private float damage;
 
-        private Enemy enemy;
+        [SerializeField] private float currentTime;
+        [SerializeField] private float destructTime;
+
+        private Grunt enemy;
         private ObjectPool<Bullet> pool;
 
         private Rigidbody rb;
 
+        private void Update()
+        {
+            // Update the current time
+            currentTime += Time.deltaTime;
+
+            // Exit case - the current time is less than the destruct time
+            if(currentTime < destructTime) return;
+
+            // Return the Bullet to the pool
+            pool.Release(this);
+        }
+
         /// <summary>
         /// Initialize the Bullet
         /// </summary>
-        public void Initialize(ObjectPool<Bullet> pool, Enemy enemy)
+        public void Initialize(ObjectPool<Bullet> pool, Grunt enemy)
         {
             // Set references
             this.pool = pool;
             this.enemy = enemy;
+
+            // Set variables
+            currentTime = 0f;
 
             // Get the Rigidbody component
             rb = GetComponent<Rigidbody>();

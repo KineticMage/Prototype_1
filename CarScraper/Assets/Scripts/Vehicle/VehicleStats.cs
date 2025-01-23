@@ -6,6 +6,7 @@ namespace CarScraper
 {
     public class VehicleStats : MonoBehaviour, IDamageable
     {
+        [SerializeField] private float health;
 
         private void Start()
         {
@@ -13,9 +14,19 @@ namespace CarScraper
             ServiceLocator.ForSceneOf(this).Get<EnemyBrain>().RegisterPlayer(transform);
         }
 
+        /// <summary>
+        /// Take damage for the vehicle
+        /// </summary>
         public void Damage(float damage)
         {
-            Debug.Log("Taking Damage!");
+            // Subtract the health by the damage taken
+            health -= damage;
+
+            // Check lose conditions
+            if(health <= 0)
+            {
+                // Lose the gamae
+            }
         }
     }
 }
