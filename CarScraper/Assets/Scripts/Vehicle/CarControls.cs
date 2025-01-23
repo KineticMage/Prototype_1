@@ -52,6 +52,8 @@ namespace CarScraper.Vehicles
 
             ApplyAntiRollBar(wheel_L_F, wheel_R_F);
             ApplyAntiRollBar(wheel_L_B, wheel_R_B);
+
+            ApplyStabilization();
         }
 
         private void Jump()
@@ -80,6 +82,15 @@ namespace CarScraper.Vehicles
             {
                 isGrounded = true;
             }
+        }
+        void ApplyStabilization()
+        {
+            Vector3 currentUp = transform.up;
+            Vector3 desiredUp = Vector3.up;
+
+            // Compute a torque to correct the car's tilt
+            Vector3 stabilizationTorque = Vector3.Cross(currentUp, desiredUp) * 500f; // Adjust force if needed
+            rigid.AddTorque(stabilizationTorque, ForceMode.Force);
         }
 
         void ApplyAntiRollBar(WheelCollider leftWheel, WheelCollider rightWheel)
