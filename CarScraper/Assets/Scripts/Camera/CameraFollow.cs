@@ -22,6 +22,9 @@ namespace CarScraper.Camera
 
         void FixedUpdate()
         {
+            // Exit case - the Transform does not exist
+            if (carTransform == null) return;
+
             //Look at car
             Vector3 _lookDirection = (new Vector3(carTransform.position.x, carTransform.position.y, carTransform.position.z)) - transform.position;
             Quaternion _rot = Quaternion.LookRotation(_lookDirection, Vector3.up);

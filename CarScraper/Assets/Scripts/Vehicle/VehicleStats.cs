@@ -6,13 +6,15 @@ namespace CarScraper
 {
     public class VehicleStats : MonoBehaviour, IDamageable
     {
+        [SerializeField] private EnemyBrain enemyBrain;
         [SerializeField] private float health;
         [SerializeField] GameObject GameLooseUI;
 
         private void Start()
         {
             // Register this as the Player for the Enemy Brain
-            ServiceLocator.ForSceneOf(this).Get<EnemyBrain>().RegisterPlayer(transform);
+            enemyBrain = ServiceLocator.ForSceneOf(this).Get<EnemyBrain>();
+            enemyBrain.RegisterPlayer(transform);
         }
 
         /// <summary>
@@ -26,7 +28,11 @@ namespace CarScraper
             // Check lose conditions
             if(health <= 0)
             {
-                // Lose the gamae
+                // Deregister the Player from the Enemy Brain
+                enemyBrain.DeregisterPlayer(transform);
+
+                // Destroy the car
+                Destroy(transform.parent.gameObject);
             }
         }
 
