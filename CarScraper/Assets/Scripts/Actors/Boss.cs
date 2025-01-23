@@ -72,7 +72,7 @@ namespace CarScraper.Actors
             Vector3 playerFuturePosition = brain.Player.transform.position + playerVelocity;
 
             // Set spawn positions
-            feedbackSpawnPosition = playerFuturePosition;
+            feedbackSpawnPosition = new Vector3(playerFuturePosition.x, 0.01f, playerFuturePosition.z);
             hazardSpawnPosition = new Vector3(playerFuturePosition.x, playerFuturePosition.y + 50f, playerFuturePosition.z);
 
             // Spanw a hazard

@@ -36,7 +36,7 @@ namespace CarScraper.Actors
             }
 
             // Calculate the opacity based on the distance
-            float opacity = Mathf.Clamp01(1 - (distance / 50f));
+            float opacity = Mathf.Clamp(1 - (distance / 50f), 0.2f, 1f);
             Color color = spriteRenderer.color;
             color.a = opacity;
             spriteRenderer.color = color;
@@ -51,7 +51,7 @@ namespace CarScraper.Actors
             this.currentHazard = currentHazard;
 
             // Set the spawn position
-            transform.position = transform.parent.TransformPoint(spawnPosition);
+            transform.position = spawnPosition;
         }
     }
 }

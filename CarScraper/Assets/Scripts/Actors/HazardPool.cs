@@ -28,9 +28,6 @@ namespace CarScraper.Actors
             // Instantiate the Bullet
             Hazard hazard = Instantiate(hazardPrefab, boss.GetHazardSpawnPosition(), Quaternion.identity);
 
-            // Initialize the Bullet
-            hazard.Initialize(pool);
-
             return hazard;
         }
 

@@ -7,24 +7,6 @@ namespace CarScraper.Actors
     {
         [SerializeField] private LayerMask collisionLayers;
         [SerializeField] private float damage;
-        private ObjectPool<Hazard> pool;
-
-        private Rigidbody rb;
-
-        /// <summary>
-        /// Initialize the Bullet
-        /// </summary>
-        public void Initialize(ObjectPool<Hazard> pool)
-        {
-            // Set references
-            this.pool = pool;
-
-            // Get the Rigidbody component
-            rb = GetComponent<Rigidbody>();
-
-            // Add stronger gravity to the Hazard
-            rb.AddForce(Physics.gravity * rb.mass);
-        }
 
         private void OnCollisionEnter(Collision collision)
         {
