@@ -5,10 +5,16 @@ using System.Collections.Generic;
 
 namespace CarScraper
 {
+    enum TetherType
+    {
+        Attach,
+        Drag
+    }
+
     public class Tether : MonoBehaviour
     {
         [SerializeField]
-        private Vector3 tetherPoint;
+        private GameObject tetherPoint;
         [SerializeField]
         private Rigidbody carRB;
         [SerializeField]
@@ -27,6 +33,7 @@ namespace CarScraper
         private GameObject tetherCube;
         private List<GameObject> tetherObjsInRange;
         private GameObject highlightedTetherObj;
+        private TetherType tetherType;
 
         void Start()
         {
@@ -38,17 +45,25 @@ namespace CarScraper
         {
             if (isTethered)
             {
-                dist = tetherPoint - carRB.transform.position;
+                dist = tetherPoint.transform.position - carRB.transform.position;
 
                 if (dist.magnitude >= maxDistance)
                 {
-                    carRB.transform.position = tetherPoint - dist.normalized * maxDistance;
-                    carRB.AddForce(dist * 1000);
-                    carRB.AddTorque(Vector3.up * torque);
+                    if (tetherType == TetherType.Attach)
+                    {
+                        carRB.transform.position = tetherPoint.transform.position - dist.normalized * maxDistance;
+                        carRB.AddForce(dist * 1000);
+                        carRB.AddTorque(Vector3.up * torque);
+                    }
+                    else
+                    {
+                        tetherPoint.transform.position = carRB.transform.position + dist.normalized * maxDistance;
+                        tetherPoint.GetComponent<Rigidbody>().AddForce(-dist * maxDistance);
+                    }
                 }
 
                 tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
-                tetherCube.transform.localPosition = tetherPoint - dist / 2;
+                tetherCube.transform.localPosition = tetherPoint.transform.position - dist / 2;
                 tetherCube.transform.rotation = Quaternion.LookRotation(dist);
 
                 if (leftClick.action.ReadValue<float>() == 0)
@@ -59,7 +74,6 @@ namespace CarScraper
             }
             else
             {
-                Debug.Log(scroll.action.ReadValue<Vector2>());
                 // Remove hits that are too far away from the list
                 for (int i = 0; i < tetherObjsInRange.Count; i++)
                 {
@@ -128,24 +142,18 @@ namespace CarScraper
                 if (leftClick.action.ReadValue<float>() == 1 && highlightedTetherObj != null)
                 {
                     isTethered = true;
-                    tetherPoint = highlightedTetherObj.transform.position;
+                    tetherPoint = highlightedTetherObj;
                     tetherCube.SetActive(true);
+                    if (tetherPoint.tag == "Draggable")
+                        tetherType = TetherType.Drag;
+                    else
+                        tetherType = TetherType.Attach;
 
-                    dist = tetherPoint - carRB.transform.position; // Update dist before using it
+                    dist = tetherPoint.transform.position - carRB.transform.position; // Update dist before using it
                     tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
-                    tetherCube.transform.localPosition = tetherPoint - dist / 2;
+                    tetherCube.transform.localPosition = tetherPoint.transform.position - dist / 2;
                     tetherCube.transform.rotation = Quaternion.LookRotation(dist);
                 }
-            }
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (isTethered)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawWireSphere(tetherPoint, 0.2f);
-                Gizmos.DrawLine(carRB.transform.position, tetherPoint);
             }
         }
     }
