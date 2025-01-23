@@ -28,6 +28,9 @@ namespace CarScraper.Actors
             // Instantiate the Bullet
             Hazard hazard = Instantiate(hazardPrefab, boss.GetHazardSpawnPosition(), Quaternion.identity);
 
+            // Initialize the Hazard
+            hazard.Initialize(pool);
+
             return hazard;
         }
 
@@ -39,6 +42,9 @@ namespace CarScraper.Actors
             // Set the transform and rotation
             hazard.transform.position = boss.GetHazardSpawnPosition();
             hazard.transform.rotation = Quaternion.identity;
+
+            // Reset the Hazard
+            hazard.ResetHazard();
 
             // Activate the Bullet
             hazard.gameObject.SetActive(true);

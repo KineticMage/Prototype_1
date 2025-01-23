@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2569947099012270353}
   - component: {fileID: 2622053620746280257}
   - component: {fileID: 5155032463889049559}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &2622053620746280257
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -149,7 +149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b13768932ab97249af75e17df908547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 4914716930404006884, guid: aed12c224fbc8704d8eaa07a52e88f44, type: 3}
   collisionLayers:
     serializedVersion: 2
     m_Bits: 256
+  activateLayers:
+    serializedVersion: 2
+    m_Bits: 129
   damage: 100
+  primed: 0

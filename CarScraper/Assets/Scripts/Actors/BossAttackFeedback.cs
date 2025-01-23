@@ -47,11 +47,34 @@ namespace CarScraper.Actors
         /// </summary>
         public void Activate(Vector3 spawnPosition, Hazard currentHazard)
         {
+            // Check if a current Hazard exists
+            if(this.currentHazard != null)
+            {
+                // Unsubscribe from its events
+                this.currentHazard.OnExplode -= OnHazardExplode;
+            }
+
             // Set the current hazard
             this.currentHazard = currentHazard;
+            this.currentHazard.OnExplode += OnHazardExplode;
 
             // Set the spawn position
             transform.position = spawnPosition;
+        }
+
+        /// <summary>
+        /// Handle the Hazard explosion
+        /// </summary>
+        private void OnHazardExplode()
+        {
+            // Unsubscribe the event
+            currentHazard.OnExplode -= OnHazardExplode;
+
+            // Nullify the current hazard
+            currentHazard = null;
+
+            // Set the invisible color
+            spriteRenderer.color = invisibleColor;
         }
     }
 }

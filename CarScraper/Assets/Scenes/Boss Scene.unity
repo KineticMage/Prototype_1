@@ -937,7 +937,7 @@ GameObject:
   - component: {fileID: 451512811}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1596,6 +1596,7 @@ GameObject:
   - component: {fileID: 1008482778}
   - component: {fileID: 1008482781}
   - component: {fileID: 1008482782}
+  - component: {fileID: 1008482783}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -1726,6 +1727,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hazardPrefab: {fileID: 5155032463889049559, guid: 234eb84f05d975344abfafda9b40d307, type: 3}
+--- !u!114 &1008482783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008482776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fcd49bc320926409fef37eb2e5e390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 25
 --- !u!1 &1034495929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,8 +2397,8 @@ MonoBehaviour:
   steerspeed: 40
   move: {fileID: 665174823816205576, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   jumpInput: {fileID: 7671029807826948509, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
-  jumpForce: 0
-  FallMultiplier: 2.5
+  jumpForce: 5
+  fallMultiplier: 2.5
   lowJumpMultiplier: 2
 --- !u!54 &1456992551
 Rigidbody:
@@ -2737,6 +2751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8827bc7f2d3f3ce4bad0d04a39c08de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBrain: {fileID: 0}
   health: 100
 --- !u!65 &1619167553
 BoxCollider:
@@ -2959,7 +2974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f755cbac35977bc4eacbb6c574af4e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 2
   forceMultiplier: 20
   upwardForceFactor: 1.01
   minForce: 150
