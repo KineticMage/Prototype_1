@@ -1,12 +1,20 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 namespace CarScraper
 {
+    enum TetherType
+    {
+        Attach,
+        Drag
+    }
+
     public class Tether : MonoBehaviour
     {
         [SerializeField]
-        private Vector3 tetherPoint;
+        private GameObject tetherPoint;
         [SerializeField]
         private Rigidbody carRB;
         [SerializeField]
@@ -18,33 +26,48 @@ namespace CarScraper
         private InputActionReference leftClick;
         [SerializeField]
         private InputActionReference rightClick;
+        [SerializeField]
+        private InputActionReference scroll;
         private bool isTethered;
         [SerializeField]
         private GameObject tetherCube;
+        private List<GameObject> tetherObjsInRange;
+        private GameObject highlightedTetherObj;
+        private TetherType tetherType;
 
         void Start()
         {
             isTethered = false;
+            tetherObjsInRange = new List<GameObject>();
         }
 
         void Update()
         {
             if (isTethered)
             {
-                dist = tetherPoint - carRB.transform.position;
+                dist = tetherPoint.transform.position - carRB.transform.position;
 
                 if (dist.magnitude >= maxDistance)
                 {
-                    carRB.transform.position = tetherPoint - dist.normalized * maxDistance;
-                    carRB.AddForce(dist * 1000);
-                    carRB.AddTorque(Vector3.up * torque);
+                    if (tetherType == TetherType.Attach)
+                    {
+                        carRB.transform.position = tetherPoint.transform.position - dist.normalized * maxDistance;
+                        carRB.AddForce(dist * 1000);
+                        carRB.AddTorque(Vector3.up * torque);
+                    }
+                    else
+                    {
+                        tetherPoint.transform.position = carRB.transform.position + dist.normalized * maxDistance;
+                        if (tetherPoint.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                            rb.AddForce(-dist * rb.mass);
+                    }
                 }
 
                 tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
-                tetherCube.transform.localPosition = tetherPoint - dist / 2;
+                tetherCube.transform.localPosition = tetherPoint.transform.position - dist / 2;
                 tetherCube.transform.rotation = Quaternion.LookRotation(dist);
 
-                if (rightClick.action.ReadValue<float>() == 1)
+                if (leftClick.action.ReadValue<float>() == 0)
                 {
                     isTethered = false;
                     tetherCube.SetActive(false);
@@ -52,40 +75,86 @@ namespace CarScraper
             }
             else
             {
-                if (leftClick.action.ReadValue<float>() == 1)
+                // Remove hits that are too far away from the list
+                for (int i = 0; i < tetherObjsInRange.Count; i++)
                 {
-                    UnityEngine.Camera mainCam = UnityEngine.Camera.main; Vector3 mousePos = Mouse.current.position.ReadValue();
-                    LayerMask layerMask = LayerMask.GetMask("TetherObject");
-                    Ray ray = mainCam.ScreenPointToRay(mousePos);
-
-                    if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+                    GameObject go = tetherObjsInRange[i];
+                    float currentDist = (go.transform.position - carRB.transform.position).magnitude;
+                    if (currentDist > maxDistance)
                     {
-                        float distanceToHit = Vector3.Distance(hit.point, carRB.transform.position);
-
-                        // Ensure the hit point is within the max tethering range
-                        if (distanceToHit <= maxDistance)
-                        {
-                            isTethered = true;
-                            tetherPoint = hit.point;
-                            tetherCube.SetActive(true);
-
-                            dist = tetherPoint - carRB.transform.position; // Update dist before using it
-                            tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
-                            tetherCube.transform.localPosition = tetherPoint - dist / 2;
-                            tetherCube.transform.rotation = Quaternion.LookRotation(dist);
-                        }
+                        if (go == highlightedTetherObj)
+                            highlightedTetherObj = null;
+                        go.GetComponent<MeshRenderer>().material.color = Color.white;
+                        tetherObjsInRange.RemoveAt(i);
+                        i--;
                     }
                 }
-            }
-        }
 
-        private void OnDrawGizmos()
-        {
-            if (isTethered)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawWireSphere(tetherPoint, 0.2f);
-                Gizmos.DrawLine(carRB.transform.position, tetherPoint);
+                // Add new hits to the list
+                LayerMask layerMask = LayerMask.GetMask("TetherObject");
+                RaycastHit[] hits = Physics.SphereCastAll(carRB.transform.position, maxDistance, Vector3.up,
+                    maxDistance, layerMask);
+                foreach (RaycastHit hit in hits)
+                {
+                    GameObject go = hit.collider.gameObject;
+                    if (!tetherObjsInRange.Contains(go))
+                    {
+                        tetherObjsInRange.Add(go);
+                        go.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                    }
+                }
+
+                // If there is no closest hit, highlight the closest hit
+                if (highlightedTetherObj == null && tetherObjsInRange.Count > 0)
+                {
+                    float minDistance = maxDistance;
+                    foreach (GameObject go in tetherObjsInRange)
+                    {
+                        float currentDist = (go.transform.position - carRB.transform.position).magnitude;
+                        if (currentDist < minDistance)
+                        {
+                            minDistance = currentDist;
+                            highlightedTetherObj = go;
+                        }
+                    }
+
+                    if (highlightedTetherObj != null)
+                    {
+                        highlightedTetherObj.GetComponent<MeshRenderer>().material.color = Color.green;
+                    }
+                }
+
+                float tetherFocusVal = scroll.action.ReadValue<Vector2>().y;
+                if (tetherFocusVal != 0f && tetherObjsInRange.Count > 1)
+                {
+                    highlightedTetherObj.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                    int focusedTetherObjIdx = tetherObjsInRange.IndexOf(highlightedTetherObj);
+                    if (tetherFocusVal < 0f)
+                        focusedTetherObjIdx--;
+                    else
+                        focusedTetherObjIdx++;
+                    focusedTetherObjIdx %= tetherObjsInRange.Count;
+                    if (focusedTetherObjIdx < 0)
+                        focusedTetherObjIdx = tetherObjsInRange.Count - 1;
+                    highlightedTetherObj = tetherObjsInRange[focusedTetherObjIdx];
+                    highlightedTetherObj.GetComponent<MeshRenderer>().material.color = Color.green;
+                }
+
+                if (leftClick.action.ReadValue<float>() == 1 && highlightedTetherObj != null)
+                {
+                    isTethered = true;
+                    tetherPoint = highlightedTetherObj;
+                    tetherCube.SetActive(true);
+                    if (tetherPoint.tag == "Draggable")
+                        tetherType = TetherType.Drag;
+                    else
+                        tetherType = TetherType.Attach;
+
+                    dist = tetherPoint.transform.position - carRB.transform.position; // Update dist before using it
+                    tetherCube.transform.localScale = new Vector3(0.1f, 0.1f, dist.magnitude);
+                    tetherCube.transform.localPosition = tetherPoint.transform.position - dist / 2;
+                    tetherCube.transform.rotation = Quaternion.LookRotation(dist);
+                }
             }
         }
     }
