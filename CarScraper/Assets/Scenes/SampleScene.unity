@@ -4654,7 +4654,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: e985d5442a8757848b3cfbda59e34f6b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7255,6 +7255,7 @@ MonoBehaviour:
   torque: 50
   leftClick: {fileID: 2927861327515408729, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   rightClick: {fileID: -7776591262001909555, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
+  scroll: {fileID: -1937982655695695389, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   tetherCube: {fileID: 41862675}
 --- !u!1 &967151690
 GameObject:
