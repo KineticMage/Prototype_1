@@ -8,6 +8,7 @@ namespace CarScraper
     {
         [SerializeField] private EnemyBrain enemyBrain;
         [SerializeField] private float health;
+        [SerializeField] GameObject GameLooseUI;
 
         private void Start()
         {
@@ -32,6 +33,14 @@ namespace CarScraper
 
                 // Destroy the car
                 Destroy(transform.parent.gameObject);
+            }
+        }
+
+        private void Update()
+        {
+            if (health == 0) 
+            { 
+                GameLooseUI.SetActive(true);
             }
         }
     }

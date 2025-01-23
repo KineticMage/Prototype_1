@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace CarScraper
 {
@@ -35,6 +36,17 @@ namespace CarScraper
         {
             if (settingsMenu.isVisible) settingsMenu.DisableSettings(settingsMenuUI);
             else settingsMenu.EnableSettings(settingsMenuUI);
+        }
+
+        public void Quit()
+        {
+            Debug.Log("Quit");
+            Application.Quit();
+        }
+
+        public void Restart()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
