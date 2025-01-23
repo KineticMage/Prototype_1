@@ -1,4 +1,5 @@
 using CarScraper.Vehicles;
+using System.Collections;
 using UnityEngine;
 
 namespace CarScraper.Actors
@@ -13,6 +14,7 @@ namespace CarScraper.Actors
         [SerializeField] private float upwardForceFactor = 0.5f; // Controls how much upward force is added
         [SerializeField] private float minForce = 100f;
         [SerializeField] private float maxForce = 250f;
+        private Coroutine despawnCoroutine;
 
         private void Awake()
         {
@@ -23,7 +25,16 @@ namespace CarScraper.Actors
         private void OnCollisionEnter(Collision collision)
         {
             // Exit case - the colliding object is not a vehicle
-            if (!collision.gameObject.TryGetComponent(out CarControls vehicle)) return;
+            if (!collision.gameObject.TryGetComponent(out CarControls vehicle))
+            {
+                // Exit case - there is no draggable tag
+                if(collision.gameObject.tag != "Draggable") return;
+
+                // Take 5 damage
+                Damage(5f);
+
+                return;
+            }
 
             // Exit case - the enemy or the vehicle does not have a Rigidbody
             if (rb == null || vehicle.rigid == null) return;
@@ -73,8 +84,40 @@ namespace CarScraper.Actors
             // Subtract the health by the damage
             health -= damage;
 
-            // If at 0 health or below, remove all constraints to allow for ragdoll moments
-            if (health <= 0) rb.constraints = RigidbodyConstraints.None;
+            // If at 0 health or below
+            if (health <= 0)
+            {
+                // Remove all constraints to allow for ragdoll moments
+                rb.constraints = RigidbodyConstraints.None;
+
+                // Despawn the enemy
+                Despawn();
+            }
+        }
+
+        /// <summary>
+        /// Despawn the Enemy
+        /// </summary>
+        private void Despawn()
+        {
+            // Check if the Despawn Coroutine is running
+            if (despawnCoroutine != null)
+                // Stop the Despawn Coroutine
+                StopCoroutine(despawnCoroutine);
+
+            // Start the despawn coroutine
+            despawnCoroutine = StartCoroutine(DespawnTimer());
+        }
+
+        /// <summary>
+        /// Despawn 
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator DespawnTimer()
+        {
+            yield return new WaitForSeconds(5f);
+
+            Destroy(gameObject);
         }
     }
 }

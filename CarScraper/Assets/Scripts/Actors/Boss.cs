@@ -30,6 +30,12 @@ namespace CarScraper.Actors
             detectBasePosition = transform.position - Vector3.up * (capsuleCollider.height / 2);
         }
 
+        private void OnDestroy()
+        {
+            // Deregister this as an Enemy
+            brain.Deregister(this);
+        }
+
         private void Start()
         {
             // Get components
@@ -54,6 +60,9 @@ namespace CarScraper.Actors
 
         public void TickUpdate(float time, float delta)
         {
+            // Exit case - player data is not set within the brain
+            if (brain.Player == null || brain.PlayerRB == null) return;
+
             // Exit case - the Player is out of range
             if (Vector3.Distance(brain.Player.transform.position, transform.position) > range) return;
 

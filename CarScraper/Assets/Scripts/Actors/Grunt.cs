@@ -17,6 +17,11 @@ namespace CarScraper.Actors
         [SerializeField] private float shootTimer;
         [SerializeField] private float shootCooldown = 0.5f;
 
+        private void OnDestroy()
+        {
+            // Deregister this as an Enemy
+            brain.Deregister(this);
+        }
 
         private void Start()
         {
@@ -61,6 +66,9 @@ namespace CarScraper.Actors
         /// </summary>
         private (bool canSeePlayer, Vector3 directionToPlayer) CanShootPlayer()
         {
+            // Exit case - player data is not set within the brain
+            if (brain.Player == null || brain.PlayerRB == null) return (false, Vector3.zero);
+
             // Get the Player and Enemy positions
             Vector3 playerPosition = brain.Player.position;
             Vector3 enemyPosition = transform.position;

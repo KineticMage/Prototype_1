@@ -74,5 +74,18 @@ namespace CarScraper.Actors
             this.player = player;
             PlayerRB = player.parent.GetComponent<Rigidbody>();
         }
+
+        /// <summary>
+        /// Deregister the Player
+        /// </summary>
+        /// <param name="player"></param>
+        public void DeregisterPlayer(Transform player)
+        {
+            // Exit case - this player is not registered
+            if (this.player != player) return;
+
+            player = null;
+            PlayerRB = null;
+        }
     }
 }
