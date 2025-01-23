@@ -2810,8 +2810,8 @@ MonoBehaviour:
   steerspeed: 40
   move: {fileID: 665174823816205576, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   jumpInput: {fileID: 7671029807826948509, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
-  jumpForce: 0
-  FallMultiplier: 2.5
+  jumpForce: 7
+  fallMultiplier: 2.5
   lowJumpMultiplier: 2
 --- !u!114 &956754372
 MonoBehaviour:
@@ -3304,7 +3304,6 @@ MonoBehaviour:
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 128
-  enemies: []
   player: {fileID: 0}
   time: 0
 --- !u!4 &1208275273
@@ -4635,13 +4634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c74870a62e59cd4cbdc621e093eaeae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 0}
-  bulletPool: {fileID: 0}
-  detectionRange: 15
-  seesPlayer: 0
-  bulletSpawnPosition: {x: 0, y: 0, z: 0}
-  shootTimer: 0
-  shootCooldown: 1
 --- !u!136 &1680713999
 CapsuleCollider:
   m_ObjectHideFlags: 0
