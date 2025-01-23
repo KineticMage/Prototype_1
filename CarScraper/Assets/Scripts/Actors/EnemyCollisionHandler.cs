@@ -26,10 +26,10 @@ namespace CarScraper.Actors
             if (!collision.gameObject.TryGetComponent(out CarControls vehicle)) return;
 
             // Exit case - the enemy or the vehicle does not have a Rigidbody
-            if (rb == null || vehicle.RB == null) return;
+            if (rb == null || vehicle.rigid == null) return;
 
             // Get the current vehicle speed
-            float vehicleSpeed = vehicle.RB.linearVelocity.magnitude;
+            float vehicleSpeed = vehicle.rigid.linearVelocity.magnitude;
 
             // Calculate the collision point and direction
             Vector3 collisionPoint = collision.contacts[0].point;

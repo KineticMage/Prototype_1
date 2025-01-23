@@ -940,6 +940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8827bc7f2d3f3ce4bad0d04a39c08de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
 --- !u!1 &1904748926213798998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1705,7 @@ GameObject:
   - component: {fileID: 7009989051138440843}
   - component: {fileID: 3244812572080277090}
   - component: {fileID: 1415481569971070884}
+  - component: {fileID: 5450889372009261657}
   m_Layer: 8
   m_Name: Car
   m_TagString: Player
@@ -1777,7 +1779,7 @@ MonoBehaviour:
   move: {fileID: 665174823816205576, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   jumpInput: {fileID: 7671029807826948509, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   jumpForce: 0
-  FallMultiplier: 2.5
+  fallMultiplier: 2.5
   lowJumpMultiplier: 2
 --- !u!114 &3244812572080277090
 MonoBehaviour:
@@ -1828,6 +1830,27 @@ MonoBehaviour:
   m_DefaultActionMap: VehicleMovement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!65 &5450889372009261657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282568360756660447}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.1703591, z: 1}
+  m_Center: {x: 0, y: -0.08517966, z: 0}
 --- !u!1 &6671108472408860666
 GameObject:
   m_ObjectHideFlags: 0

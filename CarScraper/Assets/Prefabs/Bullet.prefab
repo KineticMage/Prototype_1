@@ -154,3 +154,5 @@ MonoBehaviour:
     m_Bits: 256
   speed: 10
   damage: 5
+  currentTime: 0
+  destructTime: 5

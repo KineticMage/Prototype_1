@@ -5,7 +5,7 @@ namespace CarScraper.Actors
 {
     public class BulletPool : MonoBehaviour
     {
-        private Enemy enemy;
+        private Grunt grunt;
         [SerializeField] private ObjectPool<Bullet> pool;
         [SerializeField] private Bullet bulletPrefab;
 
@@ -14,7 +14,7 @@ namespace CarScraper.Actors
         private void Awake()
         {
             // Get components
-            enemy = GetComponent<Enemy>();
+            grunt = GetComponent<Grunt>();
 
             // Instantiate the Object Pool
             pool = new ObjectPool<Bullet>(CreateBullet, OnTakeBulletFromPool, OnReturnBulletFromPool, OnDestroyBullet, true, 10, 100);
@@ -26,10 +26,10 @@ namespace CarScraper.Actors
         private Bullet CreateBullet()
         {
             // Instantiate the Bullet
-            Bullet bullet = Instantiate(bulletPrefab, enemy.transform.position, enemy.transform.rotation);
+            Bullet bullet = Instantiate(bulletPrefab, grunt.transform.position, grunt.transform.rotation);
 
             // Initialize the Bullet
-            bullet.Initialize(pool, enemy);
+            bullet.Initialize(pool, grunt);
 
             return bullet;
         }
@@ -40,8 +40,8 @@ namespace CarScraper.Actors
         private void OnTakeBulletFromPool(Bullet bullet)
         {
             // Set the transform and rotation
-            bullet.transform.position = enemy.transform.position;
-            bullet.transform.rotation = enemy.transform.rotation;
+            bullet.transform.position = grunt.transform.position;
+            bullet.transform.rotation = grunt.transform.rotation;
 
             // Activate the Bullet
             bullet.gameObject.SetActive(true);

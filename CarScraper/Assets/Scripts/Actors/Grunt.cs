@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CarScraper.Actors
 {
-    public class Enemy : MonoBehaviour
+    public class Grunt : MonoBehaviour, IEnemy
     {
         [Header("References")]
         [SerializeField] private EnemyBrain brain;
@@ -14,7 +14,6 @@ namespace CarScraper.Actors
         [SerializeField] private bool seesPlayer;
 
         [Header("Attack")]
-        [SerializeField] private Vector3 bulletSpawnPosition;
         [SerializeField] private float shootTimer;
         [SerializeField] private float shootCooldown = 0.5f;
 
