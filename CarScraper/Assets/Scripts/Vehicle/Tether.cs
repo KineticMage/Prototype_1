@@ -58,7 +58,8 @@ namespace CarScraper
                     else
                     {
                         tetherPoint.transform.position = carRB.transform.position + dist.normalized * maxDistance;
-                        tetherPoint.GetComponent<Rigidbody>().AddForce(-dist * maxDistance);
+                        if (tetherPoint.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                            rb.AddForce(-dist * rb.mass);
                     }
                 }
 
