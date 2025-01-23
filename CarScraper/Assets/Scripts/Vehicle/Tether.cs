@@ -90,7 +90,7 @@ namespace CarScraper
                 }
 
                 // If there is no closest hit, highlight the closest hit
-                if (highlightedTetherObj == null)
+                if (highlightedTetherObj == null && tetherObjsInRange.Count > 0)
                 {
                     float minDistance = maxDistance;
                     foreach (GameObject go in tetherObjsInRange)
@@ -107,6 +107,22 @@ namespace CarScraper
                     {
                         highlightedTetherObj.GetComponent<MeshRenderer>().material.color = Color.green;
                     }
+                }
+
+                float tetherFocusVal = scroll.action.ReadValue<Vector2>().y;
+                if (tetherFocusVal != 0f && tetherObjsInRange.Count > 1)
+                {
+                    highlightedTetherObj.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                    int focusedTetherObjIdx = tetherObjsInRange.IndexOf(highlightedTetherObj);
+                    if (tetherFocusVal < 0f)
+                        focusedTetherObjIdx--;
+                    else
+                        focusedTetherObjIdx++;
+                    focusedTetherObjIdx %= tetherObjsInRange.Count;
+                    if (focusedTetherObjIdx < 0)
+                        focusedTetherObjIdx = tetherObjsInRange.Count - 1;
+                    highlightedTetherObj = tetherObjsInRange[focusedTetherObjIdx];
+                    highlightedTetherObj.GetComponent<MeshRenderer>().material.color = Color.green;
                 }
 
                 if (leftClick.action.ReadValue<float>() == 1 && highlightedTetherObj != null)
