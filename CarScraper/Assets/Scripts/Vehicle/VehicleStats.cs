@@ -7,6 +7,7 @@ namespace CarScraper
     public class VehicleStats : MonoBehaviour, IDamageable
     {
         [SerializeField] private float health;
+        [SerializeField] GameObject GameLooseUI;
 
         private void Start()
         {
@@ -26,6 +27,14 @@ namespace CarScraper
             if(health <= 0)
             {
                 // Lose the gamae
+            }
+        }
+
+        private void Update()
+        {
+            if (health == 0) 
+            { 
+                GameLooseUI.SetActive(true);
             }
         }
     }
