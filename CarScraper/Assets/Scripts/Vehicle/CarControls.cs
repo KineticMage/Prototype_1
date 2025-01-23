@@ -75,14 +75,15 @@ namespace CarScraper.Vehicles
             }
 
         }
-
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.CompareTag("Ground"))
+            if (other.gameObject.CompareTag("Ground"))
             {
                 isGrounded = true;
             }
         }
+      
+      
         void ApplyStabilization()
         {
             Vector3 currentUp = transform.up;
