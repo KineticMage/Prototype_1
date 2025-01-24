@@ -1979,8 +1979,8 @@ GameObject:
   - component: {fileID: 319400987}
   - component: {fileID: 319400986}
   - component: {fileID: 319400985}
+  - component: {fileID: 319400988}
   - component: {fileID: 319400984}
-  - component: {fileID: 319400983}
   - component: {fileID: 319400982}
   - component: {fileID: 319400981}
   m_Layer: 8
@@ -2036,18 +2036,6 @@ MonoBehaviour:
   upwardForceFactor: 1.01
   minForce: 150
   maxForce: 300
---- !u!114 &319400983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319400979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c74870a62e59cd4cbdc621e093eaeae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &319400984
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2151,6 +2139,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319400979}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &319400988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319400979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f6d7461602dbc49a4dc6b745fa100e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 0}
+  bulletPool: {fileID: 319400981}
+  detectionRange: 15
+  seesPlayer: 0
+  shootTimer: 0
+  shootCooldown: 0.5
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6893,9 +6899,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3244812572080277090, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
+      propertyPath: scroll
+      value: 
+      objectReference: {fileID: -1937982655695695389, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
+    - target: {fileID: 3244812572080277090, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
       propertyPath: tetherCube
       value: 
       objectReference: {fileID: 41862675}
+    - target: {fileID: 5450889372009261657, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
+      propertyPath: m_Size.x
+      value: 2.3889406
+      objectReference: {fileID: 0}
     - target: {fileID: 5450889372009261657, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
       propertyPath: m_Size.y
       value: 1.2213829
@@ -6905,8 +6919,12 @@ PrefabInstance:
       value: 3.4731688
       objectReference: {fileID: 0}
     - target: {fileID: 5450889372009261657, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
+      propertyPath: m_Center.x
+      value: 0.10260975
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450889372009261657, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
       propertyPath: m_Center.y
-      value: -0.110691555
+      value: -0.11069155
       objectReference: {fileID: 0}
     - target: {fileID: 5450889372009261657, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
       propertyPath: m_Center.z
@@ -6920,6 +6938,18 @@ PrefabInstance:
       propertyPath: jumpForce
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8447069189906880001, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447069189906880001, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
+      propertyPath: enemyBrain
+      value: 
+      objectReference: {fileID: 1208275272}
+    - target: {fileID: 8447069189906880001, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
+      propertyPath: GameLooseUI
+      value: 
+      objectReference: {fileID: 767883964}
     - target: {fileID: 9168572021058354119, guid: 44283b45b3deed342aafddc218155fe5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.69
@@ -9833,8 +9863,8 @@ GameObject:
   - component: {fileID: 1396034019}
   - component: {fileID: 1396034018}
   - component: {fileID: 1396034017}
+  - component: {fileID: 1396034020}
   - component: {fileID: 1396034016}
-  - component: {fileID: 1396034015}
   - component: {fileID: 1396034014}
   - component: {fileID: 1396034013}
   m_Layer: 8
@@ -9890,18 +9920,6 @@ MonoBehaviour:
   upwardForceFactor: 1.01
   minForce: 150
   maxForce: 300
---- !u!114 &1396034015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396034011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c74870a62e59cd4cbdc621e093eaeae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1396034016
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10005,6 +10023,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396034011}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1396034020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396034011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f6d7461602dbc49a4dc6b745fa100e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 0}
+  bulletPool: {fileID: 1396034013}
+  detectionRange: 15
+  seesPlayer: 0
+  shootTimer: 0
+  shootCooldown: 0.5
 --- !u!1 &1397859755
 GameObject:
   m_ObjectHideFlags: 0
@@ -12071,8 +12107,8 @@ GameObject:
   - component: {fileID: 1680714002}
   - component: {fileID: 1680714001}
   - component: {fileID: 1680714000}
+  - component: {fileID: 1680714003}
   - component: {fileID: 1680713999}
-  - component: {fileID: 1680713998}
   - component: {fileID: 1680713997}
   - component: {fileID: 1680713996}
   m_Layer: 8
@@ -12128,18 +12164,6 @@ MonoBehaviour:
   upwardForceFactor: 1.01
   minForce: 150
   maxForce: 300
---- !u!114 &1680713998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1680713994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c74870a62e59cd4cbdc621e093eaeae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1680713999
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12243,6 +12267,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680713994}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1680714003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680713994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f6d7461602dbc49a4dc6b745fa100e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 0}
+  bulletPool: {fileID: 1680713996}
+  detectionRange: 15
+  seesPlayer: 0
+  shootTimer: 0
+  shootCooldown: 0.5
 --- !u!1 &1696681521
 GameObject:
   m_ObjectHideFlags: 0
@@ -13703,8 +13745,8 @@ GameObject:
   - component: {fileID: 1952718097}
   - component: {fileID: 1952718096}
   - component: {fileID: 1952718095}
+  - component: {fileID: 1952718098}
   - component: {fileID: 1952718094}
-  - component: {fileID: 1952718093}
   - component: {fileID: 1952718092}
   - component: {fileID: 1952718091}
   m_Layer: 8
@@ -13760,18 +13802,6 @@ MonoBehaviour:
   upwardForceFactor: 1.01
   minForce: 150
   maxForce: 300
---- !u!114 &1952718093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952718089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c74870a62e59cd4cbdc621e093eaeae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1952718094
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13875,6 +13905,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952718089}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1952718098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952718089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f6d7461602dbc49a4dc6b745fa100e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 0}
+  bulletPool: {fileID: 1952718091}
+  detectionRange: 15
+  seesPlayer: 0
+  shootTimer: 0
+  shootCooldown: 0.5
 --- !u!1 &1958846876
 GameObject:
   m_ObjectHideFlags: 0
