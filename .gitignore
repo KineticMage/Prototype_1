@@ -5,7 +5,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+
 
 # Avoid tracking the Bee and PackageManager folders
 /[Ll]ibrary/Bee/

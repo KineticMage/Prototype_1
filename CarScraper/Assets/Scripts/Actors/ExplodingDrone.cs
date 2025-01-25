@@ -52,6 +52,8 @@ namespace CarScraper
             {
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, upwardsModifier, ForceMode.Impulse);
             }
+            if (collision.GetComponent<VehicleStats>())
+                collision.GetComponent<VehicleStats>().Damage(1);
 
             Destroy(gameObject);  // Destroy the NPC
         }
