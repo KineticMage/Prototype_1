@@ -940,7 +940,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8827bc7f2d3f3ce4bad0d04a39c08de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBrain: {fileID: 0}
   health: 0
+  GameLooseUI: {fileID: 0}
 --- !u!1 &1904748926213798998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,6 +1783,7 @@ MonoBehaviour:
   jumpForce: 0
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  flipCooldown: 3
 --- !u!114 &3244812572080277090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1793,12 +1796,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc46337c87633504dabe3e7c098811bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetherPoint: {x: 0, y: 2, z: 0}
+  tetherPoint: {fileID: 0}
   carRB: {fileID: 6554969253636543231}
-  maxDistance: 10
+  maxDistance: 7.5
   torque: 50
   leftClick: {fileID: 2927861327515408729, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
   rightClick: {fileID: -7776591262001909555, guid: da4b487fb9e4d4e4099f53378cd73c6a, type: 3}
+  scroll: {fileID: 0}
   tetherCube: {fileID: 0}
 --- !u!114 &1415481569971070884
 MonoBehaviour:
